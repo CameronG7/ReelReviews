@@ -1,0 +1,26 @@
+#inputBox {
+    width: 500px;
+}
+
+#home_card {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    background-color: #3aafa9;
+}
+
+.test {
+    min-height: 10em;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.description {
+    font-size: 25px;
+}
+
