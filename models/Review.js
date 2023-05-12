@@ -6,10 +6,10 @@ class Review extends Model {}
 Review.init(
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
+      autoIncrement: true,
     },
     comment: {
       type: DataTypes.TEXT,
@@ -25,7 +25,7 @@ Review.init(
 
     },
     userId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'user',
         key: 'id',
@@ -33,7 +33,7 @@ Review.init(
       }
     },
     movieId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'movie',
         key: 'id',
@@ -41,7 +41,7 @@ Review.init(
       }
     },
     tagId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'tag',
         key: 'id',
@@ -53,7 +53,7 @@ Review.init(
       sequelize,
       timestamps: false,
       freezeTableName: true,
-      underscored: true,
+     
       modelName: 'review',
     });
 

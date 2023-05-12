@@ -6,10 +6,10 @@ class Movie extends Model {}
 Movie.init(
   {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      defaultValue: DataTypes.UUIDV4,
+      autoIncrement: true,
     },
     title: {
       type: DataTypes.STRING(75),
@@ -19,7 +19,7 @@ Movie.init(
       },
     },
     tagId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'tag',
         key: 'id',
@@ -27,7 +27,7 @@ Movie.init(
       }
     },
     reviewId: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       references: {
         model: 'review',
         key: 'id',
@@ -39,7 +39,7 @@ Movie.init(
       sequelize,
       timestamps: false,
       freezeTableName: true,
-      underscored: true,
+      
       modelName: 'movie',
     });
 

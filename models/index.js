@@ -8,7 +8,7 @@ Movie.hasMany(Review, {
 });
 
 Movie.hasMany(Tag, {
-  foreignKey: 'movieId'
+  foreignKey: 'id'
 });
 
 User.hasMany(Review, {
@@ -20,11 +20,11 @@ Review.belongsTo(Movie, {
 });
 
 Review.belongsTo(User, {
-  foreignKey: 'userId'
+  foreignKey: 'id'
 });
 
 Review.hasMany(Tag, {
-  foreignKey: 'reviewId'
+  foreignKey: 'id'
 });
 
 module.exports = { Movie, Review, User, Tag };
