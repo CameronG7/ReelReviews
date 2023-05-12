@@ -2,19 +2,19 @@ const { Movie } = require('../models');
 
 const movieData = [
   {
-    movie_name: 'Fight Club',
+    title: 'Fight Club',
   },
   {
-    movie_name: 'The Matrix',
+    title: 'The Matrix',
   },
   {
-    movie_name: 'The Godfather',
+    title: 'The Godfather',
   },
   {
-    movie_name: 'The Dark Knight',
+    title: 'The Dark Knight',
   },
   {
-    movie_name: 'Star Wars',
+    title: 'Star Wars',
   },
 ];
 
