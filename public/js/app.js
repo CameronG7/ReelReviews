@@ -30,3 +30,7 @@ function loadSignup(event) {
 };
 
 
+function logout(event) {
+    event.preventDefault();
+    ;
+}
