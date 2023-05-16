@@ -29,7 +29,6 @@ function loadSignup(event) {
     location.href = `/signup`;
 };
 
-
 function logout(event) {
     event.preventDefault();
     ;

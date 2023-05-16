@@ -9,9 +9,9 @@ router.get('/home', async (req, res) => {
     }
   });
 // /signin routes to the sign-in page
-router.get('/signin', async (req, res) => {
+router.get('/login', async (req, res) => {
   try {
-    res.render('signin', {});
+    res.render('login', {});
   } catch (error) {
     res.status(500).json({error});
   }
