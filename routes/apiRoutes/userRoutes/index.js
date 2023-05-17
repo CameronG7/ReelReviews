@@ -1,5 +1,4 @@
 const router = require('express').Router();
-
 const { User } = require('../../../models');
 
 router.post('/signup', async (req, res) => {
@@ -27,6 +26,7 @@ router.post('/logout', async (req, res) => {
   req.session.destroy(() => {
     res.json({ message: 'You are now logged out!' });
   });
+
 
 });
 

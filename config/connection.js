@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config(); //loads enviro for .env file
 
 const Sequelize = require('sequelize');
 
