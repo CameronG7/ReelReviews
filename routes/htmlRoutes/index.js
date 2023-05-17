@@ -31,6 +31,7 @@ router.get('/dashboard', async (req, res) => {
   try {
     loggedIn = req.session.loggedIn;
     res.render('dashboard', {
+      
       loggedIn
     });
   } catch (error) {

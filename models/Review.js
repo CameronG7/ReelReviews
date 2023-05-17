@@ -40,14 +40,14 @@ Review.init(
 
       }
     },
-    tagId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'tag',
-        key: 'id',
+    // tagId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'tag',
+    //     key: 'id',
 
-      }
-    }
+    //   }
+    // }
   },
     {
       sequelize,

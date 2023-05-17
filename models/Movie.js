@@ -18,14 +18,14 @@ Movie.init(
         isAlphanumeric: true,
       },
     },
-    tagId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'tag',
-        key: 'id',
+    // tagId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'tag',
+    //     key: 'id',
 
-      }
-    },
+    //   }
+    // },
     reviewId: {
       type: DataTypes.INTEGER,
       references: {
