@@ -1,21 +1,49 @@
 const router = require('express').Router();
-const { User } = require('../../../models');
+const { json } = require('sequelize');
+const {User} = require('../../../models');
+
+// loogin a user
+router.post('/login', async (req, res) => {
+    try {
+      // Find the user who matches the posted username
+      const userData = await User.findOne({ where: { email: req.body.username } });
+
+      if (!userData) {
+        res.status(400).json({ message: 'Incorrect email or password, please try again' }); 
+        return;
+      }
+      const validPassword = await userData.checkPassword(req.body.password);
+      if (!validPassword)
+      {
+        res.status(400).json({message: 'Incorrect email or password, please try again'});
+      }
+      req.session.save(() => {
+        req.session.user = userData.get({ plain: true });
+        req.session.loggedIn = true;
+      
+        res.status(200).json(user);
+      });
+
+    } catch (error) {
+      console.log(error); 
+      res.status(500).json(error);
+    }
+  });
+
 
 router.post('/signup', async (req, res) => {
-  try {
-    
-    // Create a new user with the hashed password
-    const user = await User.create(req.body);    
+    try {
+     console.log('hit signup route');
   
-    req.session.save(() => {
-      req.session.user = user.get({ plain: true });
-      if (req.session.visitCount) {
-        req.session.visitCount++;
-      } else {
-        req.session.visitCount = 1;
-      }
-      res.redirect('/dashboard');
-    });
+      // Create a new user with the hashed password
+      const user = await User.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user = user.get({ plain: true });
+        req.session.loggedIn = true;
+      
+        res.status(200).json(user);
+      });
   
   } catch (error) {
     res.status(500).json(error);

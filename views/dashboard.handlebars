@@ -3,27 +3,31 @@
     <h2>Welcome, {{name}}!</h2>
   </div>
 </div>
+
 {{#if review.length}}
-<div class="row">
-  <div class="col-auto">
-    <h3>Your review:</h3>
+  <div class="row">
+    <div class="col-auto">
+      <h3>Your review:</h3>
+    </div>
   </div>
-</div>
 {{/if}}
 
 {{#each review as |review|}}
-<section class="card">
-  <div class="card-body">
-    <h4 class="card-title">{{review.title}}</h4>
-    <p class="card-text">{{review.body}}</p>
-    <a href="/review/{{review.id}}" class="btn btn-primary">View review</a>
-  </div>
+  <section class="card">
+    <div class="card-body">
+      <h4 class="card-title">{{review.title}}</h4>
+      <p class="card-text">{{review.body}}</p>
+      <a href="/review/{{review.id}}" class="btn btn-primary">View review</a>
+    </div>
+  </section>
+{{/each}}
+
 <section id="newreview" class="card text-center">
   <div class="card-body">
-    <h3 class="card-title">Create a New review:</h3>
+    <h3 class="card-title">Create a New Review:</h3>
     <form class="form new-review-form">
       <div class="form-group">
-        <label for="review-title">review title:</label>
+        <label for="review-title">Review Title:</label>
         <input class="form-input" type="text" id="review-title" name="review-title" />
       </div>
       <div class="form-group">
@@ -35,23 +39,23 @@
       </div>
     </form>
   </div>
+</section>
 
-  {{#if review.length}}
+{{#if review.length}}
   <div class="col-md-6 review-list">
-    <h3>Older review:</h3>
+    <h3>Older Reviews:</h3>
 
     {{#each review as |review|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/review/{{review.id}}">{{review.title}}{{review.body}}</a></h4>
+      <div class="row mb-2">
+        <div class="col-md-8">
+          <h4><a href="/review/{{review.id}}">{{review.title}}{{review.body}}</a></h4>
+        </div>
+        <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE</button>
+        </div>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE</button>
-      </div>
-    </div>
     {{/each}}
   </div>
-  {{/if}}
-</div>
+{{/if}}
 
-<script src="./js/dashboard.js"></script>
+<script src="/js/dashboard.js"></script>

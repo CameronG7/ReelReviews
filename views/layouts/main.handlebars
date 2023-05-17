@@ -13,8 +13,14 @@
 
             <div id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {{#if loggedIn}}
                     <li class="nav-item">
-                        <a class="nav-link active text-dark" aria-current="page" id="loginBtn" href="/login">Log in</a>
+                        <a class="nav-link active text-dark" aria-current="page" id="logoutBtn" href="/login">Logout</a>
+                    </li>
+                    
+                    {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark" aria-current="page" id="loginPageBtn" href="/login">Log in</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" aria-current="page"><em>or</em></a>
@@ -22,8 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" id="signupPageBtn" href="/signup">Sign Up!</a>
                     </li>
-                    <div>          
-                </div>
+                    {{/if}}
             </div>
         </div>
     </nav>
@@ -41,7 +46,7 @@
 
 </body>
 
-<script src="./js/app.js"></script>
+<script src="/js/app.js"></script>
 
 
 <!-- rate limiting -->
