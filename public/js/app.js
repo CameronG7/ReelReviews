@@ -34,6 +34,7 @@ function loadSignup(event) {
 
 
 async function logout (event) { // logout function
+
     event.preventDefault();
     try {
         const response = await fetch('/api/users/logout', {
