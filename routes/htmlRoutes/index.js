@@ -29,8 +29,9 @@ router.get('/signup', async (req, res) => {
 });
 router.get('/dashboard', async (req, res) => {
   try {
+    loggedIn = req.session.loggedIn;
     res.render('dashboard', {
-      
+      loggedIn
     });
   } catch (error) {
     res.status(500).json({error});
