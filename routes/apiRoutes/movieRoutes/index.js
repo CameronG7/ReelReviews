@@ -10,10 +10,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/movie', async (req, res) => {
-    req.session.destroy(() => {
-        res.json({message: 'You are now logged out!'});
-    });
+router.post('/movie' , async (req, res) => {
+  try {
+      const reviewData = await Review.create(req.body);
+      res.status(200).json(reviewData);
+  } catch (error) {
+      res.status(500).json(error);
+  }
 });
-
 module.exports = router;
