@@ -6,7 +6,7 @@ const {User} = require('../../../models');
 router.post('/login', async (req, res) => {
     try {
       // Find the user who matches the posted username
-      const userData = await User.findOne({ where: { email: req.body.username } });
+      const userData = await User.findOne({ where: { username: req.body.username } });
 
       if (!userData) {
         res.status(400).json({ message: 'Incorrect email or password, please try again' }); 
@@ -21,7 +21,7 @@ router.post('/login', async (req, res) => {
         req.session.user = userData.get({ plain: true });
         req.session.loggedIn = true;
       
-        res.status(200).json(user);
+        res.status(200).json(userData);
       });
 
     } catch (error) {
