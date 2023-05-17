@@ -21,7 +21,7 @@ document.getElementById("createBtn").addEventListener("click", async (event) => 
 })
 const data = await response.json();
     console.log(data);
-  
+  location.href = `/dashboard`;
     // create li html element
     
     
