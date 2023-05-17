@@ -1,5 +1,4 @@
 const router = require('express').Router();
-;
 const { json } = require('sequelize');
 const {User} = require('../../../models');
 
@@ -46,15 +45,16 @@ router.post('/signup', async (req, res) => {
         res.status(200).json(user);
       });
   
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  });
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
 
 router.post('/logout', async (req, res) => {
-    req.session.destroy(() => {
-        res.json({message: 'You are now logged out!'});
-    });
+  req.session.destroy(() => {
+    res.json({ message: 'You are now logged out!' });
+  });
+
 });
 
 module.exports = router;

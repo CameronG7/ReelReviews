@@ -24,7 +24,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    expires: 10 * 60 * 1000
+    expires: 10 * 60 * 1000,
   },
 }
 
