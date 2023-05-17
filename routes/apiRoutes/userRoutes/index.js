@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/signup', async (req, res) => {
     try {
-     
+     console.log('hit signup route');
   
       // Create a new user with the hashed password
       const user = await User.create(req.body);

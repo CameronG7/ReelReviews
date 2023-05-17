@@ -27,10 +27,10 @@
 .change-color {
     color: whitesmoke;
 }
-
+/* 
 html {
     scroll-snap-type:y mandatory;
-}
+} */
 
 section {
     scroll-snap-align: start;
