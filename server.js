@@ -23,7 +23,9 @@ const sessionConfig = {
   secret: 'Super secret secret', // normally this would be an environment variable
   resave: false,
   saveUninitialized: false,
-  cookie: {},
+  cookie: {
+    expires: 10 * 60 * 1000,
+  },
 }
 
 app.use(express.static(__dirname + '/public'))
