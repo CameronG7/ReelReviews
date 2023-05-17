@@ -27,7 +27,7 @@
 .change-color {
     color: whitesmoke;
 }
-
+/* 
 html {
     scroll-snap-type:y mandatory;
 }
@@ -37,4 +37,4 @@ section {
     height: 40vh;
     scroll-snap-type: normal;
 }
-
+ */

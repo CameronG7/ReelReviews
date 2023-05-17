@@ -16,7 +16,7 @@ document.querySelector('button').addEventListener('click', async (event)=>{
 }).then((response)=>{
     console.log(response)
     if(response.ok){
-        document.location.replace("/dashboard")
+        location.href("/dashboard")
     }else{
         alert("Login failed")
     }
