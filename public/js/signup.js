@@ -1,27 +1,30 @@
 console.log("signup.js loaded")
 
-document.getElementById("signup-form").addEventListener("submit", async (event) => {
+document.getElementById("createBtn").addEventListener("click", async (event) => {
     event.preventDefault();
 
-    const name = document.querySelector("input[name=name]").value.trim();
-    const email = document.querySelector("input[name=email]").value.trim();
-    const password = document.querySelector("input[name=password]").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    if(!name || !email || !password) {
+    if(!username || !email || !password) {
         alert("You must fill out all fields to sign up!")
         return;
     }
     try {
-    const response = await fetch("/api/users", {
+      
+    const response = await fetch("/api/users/signup", {
         method: "POST",
+        body: JSON.stringify({username, email, password}),
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name, email, password})
+       
 })
-    if(response.ok) {
-        document.location.replace("/dashboard")
-    } else{
-        alert(response.statusText)
-    }
+const data = await response.json();
+    console.log(data);
+  
+    // create li html element
+    
+    
 } catch (err) {
     console.log(err);   
 };

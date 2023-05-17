@@ -1,52 +1,62 @@
-window.addEventListener('DOMContentLoaded', () => {
+const $loginPageBtn = document.getElementById('loginPageBtn');
 
-const $loginBtn = document.getElementById('loginBtn');
-const $signupBtn = document.getElementById('signupBtn');
-const $signupPageBtn = document.getElementById('signupBtn');
-const $getStartedBtn = document.getElementById('getStartedBtn');
+const $signupPageBtn = document.getElementById('signupPageBtn');
+
 const $loginBtn2 = document.getElementById('loginBtn2');
 const $homeBtn = document.getElementById('homeBtn');
 const $logoutBtn = document.getElementById('logoutBtn');
 
-$homeBtn.addEventListener('click', async (event) => {goHome(event)});
-$loginBtn.addEventListener('click', async (event) => {loadSignin(event)});
-$getStartedBtn.addEventListener('click', async (event) => {loadSignup(event)});
-$signupPageBtn.addEventListener('click', async (event) => {loadSignup(event)});
-$loginBtn2.addEventListener('click', async (event) => {loadSignin(event)});
-$logoutBtn.addEventListener('click', (event) => { logout(event)});
-
+$homeBtn.addEventListener('click', async (event) => {
+  goHome(event);
 });
+// $loginPageBtn.addEventListener('click', async (event) => {loadLogin(event)});
 
-function goHome(event) {
-    event.preventDefault();
-    location.href = `/home`;
+// $signupPageBtn.addEventListener('click', async (event) => {loadSignup(event)});
+
+// $logoutBtn.addEventListener('click', (event) => { logout(event)});
+
+let loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+if ((loginStatus = true)) {
+  $loginPageBtn.addEventListener('click', async (event) => {
+    loadLogin(event);
+  });
+
+  $signupPageBtn.addEventListener('click', async (event) => {
+    loadSignup(event);
+  });
+} else {
+  
+$logoutBtn.addEventListener('click', (event) => { logout(event)});
 }
 
-function loadSignin(event) {
-    event.preventDefault();
-    location.href = `/signin`;
-};
+function goHome(event) {
+  event.preventDefault();
+  location.href = `/home`;
+}
+
+function loadLogin(event) {
+  event.preventDefault();
+  location.href = `/login`;
+}
 
 function loadSignup(event) {
-    event.preventDefault();
-    location.href = `/signup`;
-};
+  event.preventDefault();
+  location.href = `/signup`;
+}
 
+async function logout(event) {
+  // logout function
+  event.preventDefault();
+  try {
+    const response = await fetch('/api/users/logout', {
+      method: 'POST'
+    });
 
-async function logout (event) { // logout function
-
-    event.preventDefault();
-    try {
-        const response = await fetch('/api/users/logout', {
-          method: 'POST'
-        });
-    
-        if (response.ok) {
-            location.href = `/login`;  
-        }
-
-      } catch (err) {
-        console.log(err);
-        alert(err);
-      } 
+    if (response.ok) {
+      location.href = `/login`;
+    }
+  } catch (err) {
+    console.log(err);
+    alert(err);
+  }
 }

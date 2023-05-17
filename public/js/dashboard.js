@@ -49,7 +49,7 @@ const updateReview = document.querySelector('#updateReview')
       });
   
       if (response.ok) {
-        document.location.replace('/dashobard');
+        document.location.replace('/dashboard');
       } else {
         alert('Failed to delete review');
       }

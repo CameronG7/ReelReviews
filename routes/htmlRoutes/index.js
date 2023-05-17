@@ -3,7 +3,9 @@ const router = require('express').Router();
 // /home routes to the home page
 router.get('/home', async (req, res) => {
     try {
-      res.render('home', {});
+      res.render('home', {
+        loggedIn: req.session.loggedIn
+      });
     } catch (error) {
       res.status(500).json({error});
     }
@@ -21,6 +23,15 @@ router.get('/login', async (req, res) => {
 router.get('/signup', async (req, res) => {
   try {
     res.render('signup', {});
+  } catch (error) {
+    res.status(500).json({error});
+  }
+});
+router.get('/dashboard', async (req, res) => {
+  try {
+    res.render('dashboard', {
+      
+    });
   } catch (error) {
     res.status(500).json({error});
   }
