@@ -1,32 +1,24 @@
-const $username = document.getElementById('username');
-const $password = document.getElementById('password');
-const $loginBtn = document.getElementById('loginBtn');
-// loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
+console.log("login.js loaded")
 
-$loginBtn.addEventListener('click', async (event) => {
-  event.preventDefault();
-  const username = $username.value.trim();
-  const password = $password.value.trim();
-
-  if (!username || !password) {
-    return alert('Please enter a username and password');
-  }
-  try {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ username, password }),
-      headers: { 'Content-Type': 'application/json' }
-    });
-   if (response.ok) {
-    localStorage.setItem('response', response.ok)
-    loginStatus = true;
-    localStorage.setItem('loginStatus', true);
-    
-   }else{
-    alert('Failed to log in');
-   }
-    
-  } catch (err) {
-    alert(err);
-  }
+document.querySelector('button').addEventListener('click', async (event)=>{
+    event.preventDefault();
+    const userObj = {
+    name: document.querySelector("input[name=name]").value.trim(),
+    email: document.querySelector("input[name=email]").value.trim(),
+    password: document.querySelector("input[name=password]").value.trim(),
+    }
+    console.log(userObj)
+    await fetch("/api/users/login", {
+        method: "POST",
+        body: JSON.stringify(userObj),
+        headers: {"Content-Type": "application/json"}
+        
+}).then((response)=>{
+    console.log(response)
+    if(response.ok){
+        document.location.replace("/dashboard")
+    }else{
+        alert("Login failed")
+    }
+})
 });

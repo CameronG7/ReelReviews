@@ -22,7 +22,7 @@ const updateReview = document.querySelector('#updateReview')
     const body = document.querySelector('input[name="review-body"]').value;
 
     if (title && body) {
-      const response = await fetch(`/api/reviews/review`, {
+      const response = await fetch(`/api/reviews/login`, {
         method: 'POST',
         body: JSON.stringify({ title, body }),
         headers: {

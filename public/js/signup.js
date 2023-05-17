@@ -1,34 +1,29 @@
-const $username = document.getElementById("username");
-const $password = document.getElementById("password");
-const $email = document.getElementById("email");
-const $signupBtn = document.getElementById("signupBtn");
+console.log("signup.js loaded")
 
-$signupBtn.addEventListener("click", async (event) => {
-  event.preventDefault();
-  const username = $username.value;
-  const password = $password.value;
-  const email = $email.value;
+document.getElementById("signup-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  console.log(username, password, email);
-  
-  if(!username || !password || !email){
-    return alert("Please enter a username, password, and email")
-  }
-  try {
-    const response = await fetch("/api/users/signup", {
-      method: "POST",
-      body: JSON.stringify({ username, password, email }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = await response.json();
-    console.log(data);
-    // loginStatus = true;
-    // localStorage.setItem('loginStatus', true);
-    // create li html element
-    location.href = '/dashboard'
+    const name = document.querySelector("input[name=name]").value.trim();
+    const email = document.querySelector("input[name=email]").value.trim();
+    const password = document.querySelector("input[name=password]").value.trim();
 
-    
-  }catch(err){
-    alert(err)}
-  
+    if(!name || !email || !password) {
+        alert("You must fill out all fields to sign up!")
+        return;
+    }
+    try {
+    const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name, email, password})
+})
+    if(response.ok) {
+        document.location.replace("/dashboard")
+    } else{
+        alert(response.statusText)
+    }
+} catch (err) {
+    console.log(err);   
+};
 });
+
