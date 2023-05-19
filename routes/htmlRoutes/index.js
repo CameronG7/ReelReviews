@@ -49,12 +49,17 @@ router.get('/user/:userId', async (req,res) => {
         model: Review,
         where: {
           userId: req.params.userId,
-        } 
+        }, 
+        include: {
+          model: Movie, 
+        }
       }
     });
 
+    const test = userData.reviews.map((user) => {user.get({plain: true})});
+
   const user = userData.get({plain: true});
-  console.log(user, 'this is you');
+  console.log(test, 'this is you');
 
   res.render('userProfile', {
     user

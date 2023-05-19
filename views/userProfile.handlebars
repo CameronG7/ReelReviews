@@ -4,12 +4,22 @@
   </div>
 </div> --}}
 
-<ul class="mt-3" id="commentList">
-  <h1>Welcome back {{user.username}}!</h1>
-  <h3>Here are some of the reviews you have given:</h3>
-  {{#each user.reviews as |review|}}
-    <li>{{review.comment}}</li>
-    <li>{{review.rating}}</li>
-  {{/each}}
-</ul>
+  <h2 class="text-center mt-3">Welcome back {{user.username}}!</h2>
+  <h4 class="br-5">Here are some of the reviews you have given:</h4>
 
+  <div class="card-group">
+    {{#each user.reviews as |review|}}
+
+    <div class="col-lg-6">
+      <div class="card m-5" style="width: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">Movie Name</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Rating: {{review.rating}}</h6>
+          <p class="card-text">Comment: {{review.comment}}</p>
+          <a href="#" class="card-link">Edit Review</a>
+        </div>
+      </div>
+    </div>
+
+    {{/each}}
+  </div>

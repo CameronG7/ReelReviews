@@ -38,3 +38,7 @@ section {
     scroll-snap-type: normal;
 }
 
+#movie-card {
+    background-color: black;
+}
+
