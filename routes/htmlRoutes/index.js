@@ -56,10 +56,10 @@ router.get('/user/:userId', async (req,res) => {
       }
     });
 
-    const test = userData.reviews.map((user) => {user.get({plain: true})});
+    const reviews = userData.reviews.map((review) => review.get({plain: true}));
 
   const user = userData.get({plain: true});
-  console.log(test, 'this is you');
+  console.log(reviews, 'this is you');
 
   res.render('userProfile', {
     user
