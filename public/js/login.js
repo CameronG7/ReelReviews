@@ -18,6 +18,8 @@ document.querySelector('button').addEventListener('click', async (event)=>{
     })
     const data = await response.json();
     console.log(data);
+    if(response.ok)
+    localStorage.setItem('loginStatus', true);
     location.href = `/dashboard`;
     // create li html element
 

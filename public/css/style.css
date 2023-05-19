@@ -1,7 +1,9 @@
 #inputBox {
     width: 500px;
 }
-
+#homeBtn:hover{
+    cursor: pointer;
+}
 #home_card {
     margin-top: auto;
     margin-bottom: auto;

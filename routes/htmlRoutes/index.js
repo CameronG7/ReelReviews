@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { User, Review,Movie } = require('../../models');
 
 // /home routes to the home page
 router.get('/home', async (req, res) => {
@@ -29,12 +30,24 @@ router.get('/signup', async (req, res) => {
 });
 router.get('/dashboard', async (req, res) => {
   try {
-    loggedIn = req.session.loggedIn;
+    const {loggedIn, user}  = req.session;
+
+    const userData = await User.findAll({
+      attributes: { exclude: ['password'] },
+      order: [['username', 'ASC']],
+      include: [{ model: Review, attributes: ['id', 'rating', 'comment'], include: { model: Movie}}]
+    });
+
+   const users = userData.map((user) => user.get({ plain: true }));
+   
+
+    console.log(req.session.user);
     res.render('dashboard', {
-      
+      users,
       loggedIn
     });
   } catch (error) {
+    console.log(error);
     res.status(500).json({error});
   }
 });

@@ -15,8 +15,8 @@ $homeBtn.addEventListener('click', async (event) => {
 
 // $logoutBtn.addEventListener('click', (event) => { logout(event)});
 
-let loginStatus = JSON.parse(localStorage.getItem('loginStatus'));
-if ((loginStatus = true)) {
+let loginStatus = JSON.parse(localStorage.getItem('loginStatus')) || false;
+if (loginStatus===false ) {
   $loginPageBtn.addEventListener('click', async (event) => {
     loadLogin(event);
   });
@@ -53,6 +53,7 @@ async function logout(event) {
     });
 
     if (response.ok) {
+      localStorage.setItem('loginStatus', false);
       location.href = `/login`;
     }
   } catch (err) {
