@@ -2,25 +2,25 @@ const { Tag } = require("../models");
 
 const tagData = [
   {
-    tag_name: "Comedy",
+    name: "Comedy",
   },
   {
-    tag_name: "Action",
+    name: "Action",
   },
   {
-    tag_name: "Drama",
+    name: "Drama",
   },
   {
-    tag_name: "Horror",
+    name: "Horror",
   },
   {
-    tag_name: "Family",
+    name: "Family",
   },
   {
-    tag_name: "Romance",
+    name: "Romance",
   },
   {
-    tag_name: "Thriller",
+    name: "Thriller",
   },
 ];
 
