@@ -1,3 +1,18 @@
+.navbar {
+    background:url(https://patternuniverse.com/files/images/film-reel-pattern.gif);
+    background-size: cover;
+}
+
+
+body {
+    background: url(https://qph.cf2.quoracdn.net/main-qimg-95c1a3b81364683d389bb4eab7f3cc95);
+    background-size: cover;
+    background-color: azure;
+
+}
+
+
+
 #inputBox {
     width: 500px;
 }
@@ -27,14 +42,4 @@
 .change-color {
     color: whitesmoke;
 }
-/* 
-html {
-    scroll-snap-type:y mandatory;
-} */
 
-section {
-    scroll-snap-align: start;
-    height: 40vh;
-    scroll-snap-type: normal;
-}
- */

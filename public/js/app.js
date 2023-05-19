@@ -27,6 +27,7 @@ if ((loginStatus = true)) {
 } else {
   
 $logoutBtn.addEventListener('click', (event) => { logout(event)});
+$profileBtn.addEventListener('click', (event) => { profile(event)});
 }
 
 function goHome(event) {
@@ -59,4 +60,9 @@ async function logout(event) {
     console.log(err);
     alert(err);
   }
+}
+
+function profile(event) {
+  event.preventDefault();
+  location.href = `/profile`;
 }

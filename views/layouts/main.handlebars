@@ -8,17 +8,17 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary bg-secondary">
         <div class="container-fluid">
-<<<<<<<<< Temporary merge branch 1
-            <p class="text-light display-3 change-color" href="#" id="homeBtn" text-content="center">ReelReviews</p>
-=========
             <p class="text-light display-4" href="/home" id="homeBtn">ReelReviews</p>
->>>>>>>>> Temporary merge branch 2
+
             <div id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {{#if loggedIn}}
                     <li class="nav-item">
                         <a class="nav-link active text-dark" aria-current="page" id="logoutBtn" href="/login">Logout</a>
                     </li>
+                    <li class="nav-item">
+                         <a class="nav-link active text-dark" aria-current="page" id="profileBtn" href="/profile">Profile</a>
+                    </li>    
                     
                     {{else}}
                     <li class="nav-item">
