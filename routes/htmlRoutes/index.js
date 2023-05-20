@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Review,Movie } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // /home routes to the home page
 router.get('/home', async (req, res) => {
@@ -28,9 +29,11 @@ router.get('/signup', async (req, res) => {
     res.status(500).json({error});
   }
 });
-router.get('/dashboard', async (req, res) => {
+
+router.get('/dashboard',  async (req, res) => {
   try {
-    const {loggedIn, user}  = req.session;
+    console.log('hit dashboard route');
+    const {loggedIn, user:{username}}  = req.session;
 
     const userData = await User.findAll({
       attributes: { exclude: ['password'] },
@@ -41,11 +44,45 @@ router.get('/dashboard', async (req, res) => {
    const users = userData.map((user) => user.get({ plain: true }));
    
 
-    console.log(req.session.user);
+    console.log(users);
     res.render('dashboard', {
+      username,
       users,
       loggedIn
     });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error});
+  }
+});
+
+router.get('/user/:userId', async (req,res) => {
+  try {
+    const userData = await User.findByPk(req.params.userId, {
+      attributes: {
+        exclude: ['password'],
+      },
+      include: { 
+        model: Review,
+        where: {
+          userId: req.params.userId,
+        }, 
+        include: {
+          model: Movie, 
+        }
+      }
+    });
+
+    const reviews = userData.reviews.map((review) => review.get({plain: true}));
+    
+
+  const user = userData.get({plain: true});
+  console.log(reviews, 'this is you');
+
+  res.render('userProfile', {
+    
+    user
+  });
   } catch (error) {
     console.log(error);
     res.status(500).json({error});

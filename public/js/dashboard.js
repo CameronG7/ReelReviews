@@ -57,9 +57,9 @@ const updateReview = document.querySelector('#updateReview')
 //   }
 // });
   
-  // document
-  //   .querySelector('.new-review-form')
-  //   .addEventListener('submit', buttonNewReview);
+  document
+    .querySelector('.new-review-form')
+    .addEventListener('submit', buttonNewReview);
   
   // document
   //   .querySelector('.review-list')

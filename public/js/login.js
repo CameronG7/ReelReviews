@@ -1,31 +1,27 @@
-console.log("login.js loaded")
+console.log('login.js loaded');
 
-document.querySelector('button').addEventListener('click', async (event)=>{
-    event.preventDefault();
-    
-    const username = document.getElementById("username").value.trim()
+document.querySelector('.btn').addEventListener('click', async (event) => {
+  event.preventDefault();
+  event.stopPropagation();
 
-    const password = document.getElementById("password").value.trim()
+  const username = document.getElementById('username').value.trim();
 
-    
-    console.log(username)
-    try{
-    const response = await fetch("/api/users/login", {
-        method: "POST",
-        body: JSON.stringify({username, password}),
-        headers: {"Content-Type": "application/json"}
-        
-    })
+  const password = document.getElementById('password').value.trim();
+
+  console.log(username, password);
+  try {
+    const response = await fetch('/api/users/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+      headers: { 'Content-Type': 'application/json' }
+    });
     const data = await response.json();
     console.log(data);
-    if(response.ok)
-    localStorage.setItem('loginStatus', true);
-    location.href = `/dashboard`;
-    // create li html element
-
+    if (data) {
+      localStorage.setItem('loginStatus', true);
+      location.href = '/dashboard';
     }
-    catch(err){
-  
-    }
-})
-
+  } catch (err) {
+    console.log(err);
+  }
+});

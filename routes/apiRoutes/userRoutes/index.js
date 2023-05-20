@@ -7,20 +7,18 @@ router.post('/login', async (req, res) => {
     try {
       // Find the user who matches the posted username
       const userData = await User.findOne({ where: { username: req.body.username } });
-
-      if (!userData) {
+      const validPassword = await userData.checkPassword(req.body.password);
+      if (!userData || !validPassword) {
+        console.log(userData, validPassword);
         res.status(400).json({ message: 'Incorrect email or password, please try again' }); 
         return;
       }
-      const validPassword = await userData.checkPassword(req.body.password);
-      if (!validPassword)
-      {
-        res.status(400).json({message: 'Incorrect email or password, please try again'});
-      }
+      
+
       req.session.save(() => {
         req.session.user = userData.get({ plain: true });
         req.session.loggedIn = true;
-      
+        console.log('logged in');
         res.status(200).json(userData);
       });
 
@@ -41,7 +39,7 @@ router.post('/signup', async (req, res) => {
       req.session.save(() => {
         req.session.user = user.get({ plain: true });
         req.session.loggedIn = true;
-      
+        console.log('logged in');
         res.status(200).json(user);
       });
   
