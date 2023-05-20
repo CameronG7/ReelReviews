@@ -56,12 +56,13 @@ router.get('/dashboard', withAuth, async (req, res) => {
       ]
     });
 
-    const users = userData.map((user) => user.get({ plain: true }));
+    const users = userData.flatMap((user) => user.get({ plain: true }));
     const reviews = users.flatMap((user) => user.reviews);
     const movies = reviews.map((review) => review.movie);
 
+    console.log(users);
     console.log(reviews);
-    console.log(JSON.stringify(movies, null, 2));
+    console.log(movies);
     res.render('dashboard', {
       username,
       users,
