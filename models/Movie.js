@@ -26,14 +26,14 @@ Movie.init(
 
     //   }
     // },
-    reviewId: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'review',
-        key: 'id',
+    // reviewId: {
+    //   type: DataTypes.INTEGER,
+    //   references: {
+    //     model: 'review',
+    //     key: 'id',
 
-      }
-    },
+    //   }
+    // },
   },
     {
       sequelize,

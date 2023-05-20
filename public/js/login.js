@@ -1,5 +1,9 @@
 console.log('login.js loaded');
 
+if(document.referrer !== '') {
+    localStorage.setItem('loginStatus', false);
+}
+
 document.querySelector('.btn').addEventListener('click', async (event) => {
   event.preventDefault();
   event.stopPropagation();
