@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Review } = require('../../../models');
+const { User, Review, Movie } = require('../../../models');
 const sequelize = require('../../../config/connection');
 const withAuth = require('../../../utils/auth');
 
@@ -30,20 +30,33 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 
 
-router.post('/review', withAuth, async (req, res) => {
+router.post('/',  async (req, res) => {
     try {
+        const movie = await Movie.findOne({where: {title: req.body.title}});
+        if (!movie) {
+            console.log('movie not found');
+        
+        }
+
+        console.log(req.session.user.id);
+
         const reviewData = await Review.create({
-            title: req.body.title,
-            body: req.body.body,
-            user_id: req.session.user_id,
+            movieId: movie.id,
+            comment: req.body.comment,
+            userId: req.session.user.id,
+            rating: req.body.rating,
+
         })
         .then((newReview) => {
+            console.log(newReview);
             res.json(newReview);
         })
         .catch((err) => {
+            console.log(err);
             res.json(err);
         });
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
