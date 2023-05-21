@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { User, Review, Movie } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
+router.get('/', async (req, res) => {
+  res.redirect('/home');
+});
 // /home routes to the home page
 router.get('/home', async (req, res) => {
   try {
