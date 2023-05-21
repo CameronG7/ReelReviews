@@ -2,7 +2,9 @@ const router = require('express').Router();
 const { User, Review, Movie } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
+router.get('/', async (req, res) => {
+  res.redirect('/home');
+});
 // /home routes to the home page
 router.get('/home', async (req, res) => {
   try {
@@ -31,6 +33,7 @@ router.get('/signup', async (req, res) => {
   }
 });
 
+//dashboard routes to the dashboard page
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
     console.log('hit dashboard route');
@@ -74,7 +77,59 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.status(500).json({ error });
   }
 });
+//go to profile route
+router.get('/profile', withAuth, async (req, res) => {  
+  try {
+    const {
+      loggedIn,
+      user: { username }
+    } = req.session;
 
+    const userData = await User.findOne({
+      where: {
+        username },
+
+      attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Review,
+          attributes: ['id', 'rating', 'comment', 'movieId'],
+          include: [
+            {
+                model: Movie,
+                attributes: ['id', 'title']
+            }
+          ]
+        }
+      ]
+    })
+    const user = userData.get({ plain: true });
+    const reviews = user.reviews;
+    const movies = reviews.map((review) => review.movie);
+
+    console.log(user);
+    console.log(reviews);
+    console.log(movies);
+    res.render('profile', {
+      username,
+      user,
+      reviews,
+      movies,
+      loggedIn
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error });
+  }
+});
+
+
+
+
+
+
+
+//user route
 router.get('/user/:userId', async (req,res) => {
   try {
     const userData = await User.findByPk(req.params.userId, {
@@ -102,3 +157,5 @@ router.get('/user/:userId', async (req,res) => {
 });
 
 module.exports = router;
+
+

@@ -2,6 +2,8 @@ const router = require('express').Router();
 const { json } = require('sequelize');
 const { User } = require('../../../models');
 const lodash = require('lodash');
+const bcrypt = require("bcrypt");
+
 
 // loogin a user
 router.post('/login', async (req, res) => {

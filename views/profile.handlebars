@@ -1,0 +1,23 @@
+{{!-- <div class="row">
+  <div class="col-auto">
+    <h2>Let's see what you've had to say</h2>
+  </div>
+</div> --}}
+
+<ul class="mt-3" id="commentList">
+  <h1>Welcome back {{user.username}}!</h1>
+  <h3>Here are some of the reviews you have given:</h3>
+   <button class="text-light display-4" href="/dashboard" id="dashBoardBtn">Return to Dashboard</button>
+  {{#each user.reviews as |review|}}
+    <li>{{review.comment}}</li>
+    <li>{{review.rating}}</li>
+  {{/each}}
+</ul>
+
+  <div class="col-md-4">
+          <button class="btn btn-sm btn-danger" id="updateBtn" data-id="{{review.id}}">UPDATE</button>
+        </div>
+
+<li class="nav-item">
+<a class="nav-link active text-dark" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀👤</a>
+</li>    

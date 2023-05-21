@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { Review } = require('../../../models');
-
+const { User, Review } = require('../../../models');
+const sequelize = require('../../../config/connection');
+const withAuth = require('../../../utils/auth');
 
 
 router.get('/', async (req, res) => {
@@ -11,37 +12,15 @@ router.get('/', async (req, res) => {
         res.status(500).json(error);
     }
 });
- // find a review by its id
-// router.delete('/:id', async (req, res) => {
+ //find a review by its id
+router.delete('/:id', withAuth, async (req, res) => {
 
-//     try {
-//         const reviewData = await Review.findByPk(req.params.id);
-//         if (!reviewData) {
-//             res.status(404).json({ message: 'No review found with that id!' });
-//             return;
-//         }
-//         res.status(200).json(reviewData);
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json(error);
-//     }
-// });
-
-
-router.post('/review', async (req, res) => {
     try {
-        const reviewData = await Review.create(req.body);
-        if(req.body.tagIds.length) { // if there's movie tags, we need to create pairings to bulk create in the movieTag model    
-            
-            const reviewTagIdArr = req.body.tagIds.map((tagId) => {
-                return {
-                    reviewId: reviewData.id,
-                    tagId,
-                };
-            });
-            const reviewTagIds = await reviewTag.bulkCreate(reviewTagIdArr);
-            res.status(200).json(reviewTagIds, reviewData);
-        }   
+        const reviewData = await Review.destroy(req.params.id);
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with that id!' });
+            return;
+        }
         res.status(200).json(reviewData);
     } catch (error) {
         console.log(error);
@@ -49,6 +28,45 @@ router.post('/review', async (req, res) => {
     }
 });
 
+
+
+router.post('/review', withAuth, async (req, res) => {
+    try {
+        const reviewData = await Review.create({
+            title: req.body.title,
+            body: req.body.body,
+            user_id: req.session.user_id,
+        })
+        .then((newReview) => {
+            res.json(newReview);
+        })
+        .catch((err) => {
+            res.json(err);
+        });
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+
+router.put('/:id', withAuth, async (req, res) => {
+    try {
+        const reviewData = await Review.update(req.body, {
+            where: {
+                id: req.params.id,
+            },
+        });
+        if (!reviewData) {
+            res.status(404).json({ message: 'No review found with that id!' });
+            return;
+        }
+        res.status(200).json(reviewData);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+// 
 
 
 module.exports = router;
