@@ -103,21 +103,3 @@ router.get('/user/:userId', async (req,res) => {
 
 module.exports = router;
 
-
-    const reviews = userData.reviews.map((review) =>
-      review.get({ plain: true })
-    );
-
-    const user = userData.get({ plain: true });
-    console.log(reviews, 'this is you');
-
-    res.render('userProfile', {
-      user
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error });
-  }
-});
-
-module.exports = router;
