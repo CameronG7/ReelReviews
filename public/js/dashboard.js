@@ -2,7 +2,7 @@
 const name = document.querySelector('#review-title').value.trim();
 const description = document.querySelector('#review-body').value.trim();
 const newreview = document.querySelector('#newReview')
-const buttonNewReview = document.querySelector('#buttonNewReview')
+const $buttonNewReview = document.querySelector('#buttonNewReview')
 const deleteReview = document.querySelector('#deleteReview')
 const updateReview = document.querySelector('#updateReview')
 
@@ -22,7 +22,7 @@ const updateReview = document.querySelector('#updateReview')
     const body = document.querySelector('input[name="review-body"]').value;
 
     if (title && body) {
-      const response = await fetch(`/api/reviews/login`, {
+      const response = await fetch(`/api/reviews/review`, {
         method: 'POST',
         body: JSON.stringify({ title, body }),
         headers: {
@@ -38,35 +38,35 @@ const updateReview = document.querySelector('#updateReview')
     }
   };
   
-  deleteReview.addEventListener('submit', event =>{
+//   deleteReview.addEventListener('submit', event =>{
 
-  const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
+//   const delButtonHandler = async (event) => {
+//     if (event.target.hasAttribute('data-id')) {
+//       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/reviews/${id}`, {
-        method: 'DELETE',
-      });
+//       const response = await fetch(`/api/reviews/${id}`, {
+//         method: 'DELETE',
+//       });
   
-      if (response.ok) {
-        document.location.replace('/dashboard');
-      } else {
-        alert('Failed to delete review');
-      }
-    }
-  }
-});
+//       if (response.ok) {
+//         document.location.replace('/dashboard');
+//       } else {
+//         alert('Failed to delete review');
+//       }
+//     }
+//   }
+// });
   
   document
     .querySelector('.new-review-form')
     .addEventListener('submit', buttonNewReview);
   
-  document
-    .querySelector('.review-list')
-    .addEventListener('click', newReview);
+  // document
+  //   .querySelector('.review-list')
+  //   .addEventListener('click', newReview);
   
     
-  document
-  .querySelector('.submit-review')
-  .addEventListener('click', deleteReview);
+  // document
+  // .querySelector('.submit-review')
+  // .addEventListener('click', deleteReview);
   

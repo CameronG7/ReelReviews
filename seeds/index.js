@@ -7,15 +7,19 @@ const sequelize = require('../config/connection');
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
-  console.log('\n----- DATABASE SYNCED -----\n');
   await seedMovies();
-  console.log('\n----- CATEGORIES SEEDED -----\n');
+  console.log('\n----- MOVIES SEEDED -----\n');
+
+  console.log('\n----- TAGS SYNCED -----\n');
+  await seedTags();
+  console.log('\n----- USERS SEEDED -----\n');
 
   await seedUsers();
-  console.log('\n----- TAGS SEEDED -----\n');
-await seedReviews();
-  console.log('\n----- PRODUCTS SEEDED -----\n');
-await seedReviews();
+
+  console.log('\n----- REVIEWS SEEDED -----\n');
+  await seedReviews();
+  
+
 
   process.exit(0);
 };
