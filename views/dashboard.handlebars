@@ -1,62 +1,72 @@
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+<div class='row'>
+  <div class='col-auto'>
+    <h2>Welcome, {{username}}!</h2>
   </div>
 </div>
 
-{{#if review.length}}
-  <div class="row">
-    <div class="col-auto">
-      <h3>Your review:</h3>
-    </div>
-  </div>
-{{/if}}
+{{#each users as |user|}}
+  {{#each user.reviews as |review|}}
+    <section class='card mt-2'>
+      <div class='card-body p-3'>
+        <h4 class='card-title'>{{review.movie.title}} <h5>{{review.rating}}</h5></h4>
 
-{{#each review as |review|}}
-  <section class="card">
-    <div class="card-body">
-      <h4 class="card-title">{{review.title}}</h4>
-      <p class="card-text">{{review.body}}</p>
-      <a href="/review/{{review.id}}" class="btn btn-primary">View review</a>
-    </div>
-  </section>
+        <p class='card-text'>{{review.comment}}</p>
+        <a href='/review/{{review.id}}' class='btn btn-primary'>View review</a>
+      </div>
+    </section>
+  {{/each}}
 {{/each}}
 
-<section id="newreview" class="card text-center">
-  <div class="card-body">
-    <h3 class="card-title">Create a New Review:</h3>
-    <form class="form new-review-form">
-      <div class="form-group">
-        <label for="review-title">Review Title:</label>
-        <input class="form-input" type="text" id="review-title" name="review-title" />
+<section id='newreview' class='card text-center'>
+  <div class='card-body'>
+    <h3 class='card-title'>Create a New Review:</h3>
+    <form class='form new-review-form'>
+      <div class='form-group'>
+        <label for='review-title'>Movie Title:</label>
+        <div></div>
+        <input
+          class='form-input'
+          type='text'
+          id='review-title'
+          name='review-title'
+        />
       </div>
-      <div class="form-group">
-        <label for="review-body">Tell us about Tech:</label>
-        <textarea class="form-input" id="review-body" name="review-body"></textarea>
+      <div class='form-group mt-2'>
+        <label for='review-body clas'>Tell us what you thought:</label>
+        <div></div>
+        <textarea
+          class='form-input'
+          id='review-body'
+          name='review-body'
+        ></textarea>
       </div>
-      <div class="form-group" >
-        <button type="submit" class="btn btn-primary" id="createBtn">Create</button>
-          <button type="submit" class="btn btn-primary" id="deleteBtn">DELETE!😔</button>
+      <div class='form-group mt-2'>
+        <button type='submit' class='btn btn-primary'>Create</button>
       </div>
     </form>
   </div>
 </section>
 
-{{#if review.length}}
-  <div class="col-md-6 review-list">
+{{#if reviews.length}}
+  <div class='col-md-6 review-list'>
     <h3>Older Reviews:</h3>
 
-    {{#each review as |review|}}
-      <div class="row mb-2">
-        <div class="col-md-8">
-          <h4><a href="/review/{{review.id}}">{{review.title}}{{review.body}}</a></h4>
+    {{#each reviews as |review|}}
+      <div class='row mb-2'>
+        <div class='col-md-8'>
+          <h4><a
+              href='/review/{{review.id}}'
+            >{{review.title}}{{review.comment}}</a></h4>
         </div>
-        <div class="col-md-4">
-          <button class="btn btn-sm btn-danger" data-id="{{review.id}}">DELETE</button>
+        <div class='col-md-4'>
+          <button
+            class='btn btn-sm btn-danger'
+            data-id='{{review.id}}'
+          >DELETE</button>
         </div>
       </div>
     {{/each}}
   </div>
 {{/if}}
 
-<script src="/js/dashboard.js"></script>
+<script src='/js/dashboard.js'></script>

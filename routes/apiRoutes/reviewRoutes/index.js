@@ -31,8 +31,20 @@ router.delete('/:id', async (req, res) => {
 router.post('/review', async (req, res) => {
     try {
         const reviewData = await Review.create(req.body);
+        if(req.body.tagIds.length) { // if there's movie tags, we need to create pairings to bulk create in the movieTag model    
+            
+            const reviewTagIdArr = req.body.tagIds.map((tagId) => {
+                return {
+                    reviewId: reviewData.id,
+                    tagId,
+                };
+            });
+            const reviewTagIds = await reviewTag.bulkCreate(reviewTagIdArr);
+            res.status(200).json(reviewTagIds, reviewData);
+        }   
         res.status(200).json(reviewData);
     } catch (error) {
+        console.log(error);
         res.status(500).json(error);
     }
 });
