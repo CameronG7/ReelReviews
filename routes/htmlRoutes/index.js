@@ -91,19 +91,15 @@ router.get('/user/:userId', async (req, res) => {
       }
     });
 
-    const reviews = userData.reviews.map((review) =>
-      review.get({ plain: true })
-    );
+  const user = userData.get({plain: true});
+  console.log(user, 'this is you');
 
-    const user = userData.get({ plain: true });
-    console.log(reviews, 'this is you');
-
-    res.render('userProfile', {
-      user
-    });
+  res.render('userProfile', {
+    user
+  });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error });
+    res.status(500).json({error});
   }
 });
 
