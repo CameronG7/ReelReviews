@@ -1,17 +1,68 @@
+.navbar {
+    background:url(https://patternuniverse.com/files/images/film-reel-pattern.gif);
+    background-size: cover;
+}
+
+
+body {
+    background: url(https://qph.cf2.quoracdn.net/main-qimg-95c1a3b81364683d389bb4eab7f3cc95);
+    background-size: cover;
+    background-color: azure;
+
+}
+
+p {
+    font-size: 20px;
+    color: white;
+}
+
+h3 {
+    color: white;
+}
+
+.btn-primary {
+    background-color: grey;
+    border-color: white;
+}
+
+#loginPageBtn{ 
+    background-color: white;
+    border-color: grey;
+    margin-left: 10px;
+    margin-right: 10px;
+  
+
+}
+#signupPageBtn{ 
+    background-color: white;
+    border-color: grey;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
 #inputBox {
     width: 500px;
 }
-
+#homeBtn:hover{
+    cursor: pointer;
+}
 #home_card {
     margin-top: auto;
     margin-bottom: auto;
 }
 
 .card {
+    width: 36rem;
     margin: 0 auto; /* Added */
     float: none; /* Added */
     margin-bottom: 10px; /* Added */
-    background-color: #3aafa9;
+    background-color: grey;
+}
+
+.card-body {
+    background-color: #000000;
+    color: white;
+    border: 1px solid white;
 }
 
 .test {
@@ -27,15 +78,100 @@
 .change-color {
     color: whitesmoke;
 }
-/* 
-html {
-    scroll-snap-type:y mandatory;
-} */
 
-section {
-    scroll-snap-align: start;
-    height: 40vh;
-    scroll-snap-type: normal;
+/* For animation */
+.animate-character
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-emphasis-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s linear infinite;
+  display: inline-block;
+      font-size: 80px;
+    font-weight: 800;
+     
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.animate-character2
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    green 0%,
+    darkgreen 29%,
+    lime 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  background-color: transparent;
+  color: #fff;
+  background-clip: text;
+  text-emphasis-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+ 
+  display: inline-block;
+      font-size: 50px;
+    font-weight: 200;
+     
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.animate-character3
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    orange 0%,
+    pink 29%,
+    lime 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  text-emphasis-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 5s linear infinite;
+ 
+  display: inline-block;
+      font-size: 50px;
+    font-weight: 500;
+     
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
 }
 
 #movie-card {
