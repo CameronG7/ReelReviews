@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Review, Movie } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 // /home routes to the home page
 router.get('/home', async (req, res) => {
   try {
@@ -74,20 +75,17 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-router.get('/user/:userId', async (req, res) => {
+router.get('/user/:userId', async (req,res) => {
   try {
     const userData = await User.findByPk(req.params.userId, {
       attributes: {
-        exclude: ['password']
+        exclude: ['password'],
       },
-      include: {
+      include: { 
         model: Review,
         where: {
-          userId: req.params.userId
-        },
-        include: {
-          model: Movie
-        }
+          userId: req.params.userId,
+        } 
       }
     });
 
