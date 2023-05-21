@@ -30,12 +30,13 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 
 
-router.post('/review', withAuth, async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const reviewData = await Review.create({
             title: req.body.title,
-            body: req.body.body,
-            user_id: req.session.user_id,
+            comment: req.body.comment,
+            userId: req.session.userId,
+            rating: req.body.rating,
         })
         .then((newReview) => {
             res.json(newReview);
