@@ -67,4 +67,65 @@ router.post('/logout', async (req, res) => {
   });
 });
 
+router.post('/update', async (req, res) => {
+  try {
+    console.log('hit update route');
+    // clean up the data with lodash
+    const body = lodash.pick(req.body, ['username', 'email', 'password']);
+    console.log(body);
+    // Create a new user with the hashed password
+    const user = await User.update(body, {
+      where: {
+        id: req.session.user.id
+      }
+    });
+
+    req.session.save(() => {
+      req.session.user = user.get({ plain: true });
+      req.session.loggedIn = true;
+      console.log('logged in');
+      res.status(200).json(user);
+    });
+  } catch (error) {
+    if (error.errors[0].path === 'email') {
+      console.log('email validate error', error);
+      res.status(400).json({ message: 'Please enter a valid email' });
+      return;
+    } else {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+});
+
+router.delete('/', async (req, res) => {
+  try {
+    console.log('hit delete route');
+    // clean up the data with lodash
+    const body = lodash.pick(req.body, ['username', 'email', 'password']);
+    console.log(body);
+    // Create a new user with the hashed password
+    const user = await User.destroy({
+      where: {
+        id: req.session.user.id
+      }
+    });
+    
+    req.session.destroy(() => {
+      res.json({ message: 'You are now logged out!' });
+    });
+  } catch (error) {
+    if (error.errors[0].path === 'email') {
+      console.log('email validate error', error);
+      res.status(400).json({ message: 'Please enter a valid email' });
+      return;
+    } else {
+      console.log(error);
+      res.status(500).json(error);
+    }
+  }
+});
+
+
+
 module.exports = router;

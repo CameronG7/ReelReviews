@@ -1,18 +1,6 @@
 console.log('profile.js loaded');
 
 
-const $dashBoardBtn = document.getElementById('dashBoardBtn');
-
-$dashBoardBtn.addEventListener('click', async (event) => {
-    loadDashBoard(event);
-    }
-    );
-
-function loadDashBoard(event) {
-    event.preventDefault();
-    location.href = `/dashboard`;
-}
-
 const $deleteUserBtn = document.getElementById('deleteUserBtn');
 
 $deleteUserBtn.addEventListener('click', async (event) => {
@@ -20,16 +8,18 @@ $deleteUserBtn.addEventListener('click', async (event) => {
     }
     );
 
-function deleteUser(event) {
+async function deleteUser(event) {
     event.preventDefault();
+    alert('Are you sure you want to delete your account? That is lame.');
     try {
-        const response = fetch(`/api/users/${id}`, {
+        const response = await fetch('/api/users', {
             method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
         });
         if (response.ok) {
             location.href = '/';
         } else {
-            alert('Failed to delete user');
+            alert('Failed to delete user shiiittttt');
         }
     } catch (error) {
         console.log(error);
