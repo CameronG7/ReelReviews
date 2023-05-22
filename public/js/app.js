@@ -21,10 +21,13 @@ if (loginStatus===false ) {
     loadSignup(event);
   });
 } else {
-  
-$logoutBtn.addEventListener('click', (event) => { logout(event)});
+  // $loginPageBtn.addEventListener('click', async (event) => {
+  //   logout(event);
+  // });
 
-$profileBtn.addEventListener('click', (event) => { profile(event)});
+  // $signupPageBtn.addEventListener('click', async (event) => {
+  //   profile(event);
+  // });
 }
 
 
