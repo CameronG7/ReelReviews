@@ -1,27 +1,28 @@
-{{!-- <div class="row">
-  <div class="col-auto">
-    <h2>Let's see what you've had to say</h2>
-  </div>
-</div> --}}
-
-
 <ul class="mt-3" id="commentList">
-  <h1>Welcome back {{user.username}}!</h1>
-  <h3>Here are some of the reviews you have given:</h3>
-   <button class="text-light display-4" href="/dashboard" id="dashBoardBtn">Return to Dashboard</button>
-  {{#each user.reviews as |review|}}
-    <li>{{review.comment}}</li>
-    <li>{{review.rating}}</li>
-  {{/each}}
+  <h1 class="text-light text-center">Welcome back {{user.username}}!</h1>
+
+  {{#if user.reviews.length}}
+  <h3 class="m-3 text-center"><em>Your past reviews:</em></h3>
+    {{#each user.reviews as |review|}}
+    <section class='card mt-2 col-3'>
+      <div class='card-body p-3'>
+        <h4 class='card-title'>{{review.movie.title}} <h5>{{review.rating}}</h5>
+        </h4>
+
+        <p class='card-text'>{{review.comment}}</p>
+      </div>
+    </section>
+    {{/each}}
+
+    {{else}}
+    <h3 class="text-light text-center mt-5">It looks like you haven't posted any reviews yet 😲</h3>
+    <h3 class="text-light text-center mt-2">Get posting ↓</h3>
+    {{/if}}
 </ul>
 
-  <div class="col-md-4">
-          <button class="btn btn-sm btn-danger" id="updateBtn" data-id="{{review.id}}">UPDATE</button>
-        </div>
-
 <li class="nav-item">
-<a class="nav-link active text-dark" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀👤</a>
-</li>  
+  <a class="nav-link active text-dark" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀👤</a>
+</li>
 
 <section id='newreview' class='card text-center'>
   <div class='card-body'>
@@ -30,25 +31,16 @@
       <div class='form-group'>
         <label for='review-title'>Movie Title:</label>
         <div></div>
-        <input
-          class='form-input'
-          type='text'
-          id='review-title'
-          name='review-title'
-        />
+        <input class='form-input' type='text' id='review-title' name='review-title' />
       </div>
       <div class='form-group mt-2'>
         <label for='review-body clas'>Tell us what you thought:</label>
         <div></div>
-        <input
-          class='form-input'
-          id='review-body'
-          name='review-body'
-          />
+        <input class='form-input' id='review-body' name='review-body' />
       </div>
       <div class='form-group mt-2'>
         <button type='submit' class='btn btn-primary' id="createBtn">Create</button>
       </div>
     </form>
   </div>
-</section>  
+</section>
