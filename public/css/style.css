@@ -105,7 +105,7 @@ h3 {
   -webkit-text-fill-color: transparent;
   animation: textclip 5s linear infinite;
   display: inline-block;
-      font-size: 80px;
+      font-size: 50px;
     font-weight: 800;
      
 }
@@ -136,7 +136,7 @@ h3 {
   -webkit-text-fill-color: transparent;
  
   display: inline-block;
-      font-size: 50px;
+      font-size: 40px;
     font-weight: 200;
      
 }
@@ -168,7 +168,7 @@ h3 {
   animation: textclip 5s linear infinite;
  
   display: inline-block;
-      font-size: 50px;
+      font-size: 35px;
     font-weight: 500;
      
 }
