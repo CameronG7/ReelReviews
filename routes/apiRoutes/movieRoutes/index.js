@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.post('/movie' , async (req, res) => {
+router.post('/' , async (req, res) => {
   try {
       const movieData = await Movie.create(req.body);//create a new movie
       if(req.body.tagIds.length) { // if there's movie tags, we need to create pairings to bulk create in the movieTag model    
