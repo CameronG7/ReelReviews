@@ -10,7 +10,7 @@ const $createBtn = document.getElementById('createBtn');
     if (title && body) {
       const response = await fetch(`/api/reviews`, {
         method: 'POST',
-        body: JSON.stringify({ title, body }),
+        body: JSON.stringify({ title, comment }),
         headers: {
           'Content-Type': 'application/json',
         },
