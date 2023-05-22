@@ -1,6 +1,6 @@
-
-
 const $createBtn = document.getElementById('createBtn');
+
+
 //create New review
   $createBtn.addEventListener('click', async (event) => {
     event.preventDefault();
@@ -15,6 +15,13 @@ const $createBtn = document.getElementById('createBtn');
           'Content-Type': 'application/json',
         },
       });
+
+      // check the response status
+      if (response.ok) {
+        window.location.replace('/dashboard');
+      } else {
+        alert('Failed to create review');
+      }
       } else  {
         alert('Failed to create review');
       }
