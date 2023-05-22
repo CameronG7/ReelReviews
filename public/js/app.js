@@ -1,5 +1,3 @@
-const { doc } = require("prettier");
-
 const $loginPageBtn = document.getElementById('loginPageBtn');
 const $signupPageBtn = document.getElementById('signupPageBtn');
 const $loginBtn2 = document.getElementById('loginBtn2');
