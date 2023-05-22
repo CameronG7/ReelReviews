@@ -1,17 +1,6 @@
 console.log('profile.js loaded');
 
 
-const $dashBoardBtn = document.getElementById('dashBoardBtn');
-
-$dashBoardBtn.addEventListener('click', async (event) => {
-    loadDashBoard(event);
-    }
-    );
-
-function loadDashBoard(event) {
-    event.preventDefault();
-    location.href = `/dashboard`;
-}
 
 const $deleteUserBtn = document.getElementById('deleteUserBtn');
 
@@ -44,7 +33,16 @@ const $createBtn = document.getElementById('createBtn');
     const comment = document.querySelector('input[name="review-body"]').value;
     const rating = document.querySelector('input[name="review-rating"]').value;
 
+<<<<<<< HEAD
     if (title && body) {
+=======
+    const title = document.getElementById('review-title').value;
+    const comment = document.getElementById('review-body').value;
+    const rating = document.getElementById('review-rating').value;
+    console.log(title, comment, rating);
+
+    if (title && comment && rating) {
+>>>>>>> aa3b52283465d07cbdd84d120f1da76b165c577f
       const response = await fetch(`/api/reviews`, {
         method: 'POST',
         body: JSON.stringify({ title, comment }),
@@ -52,6 +50,7 @@ const $createBtn = document.getElementById('createBtn');
           'Content-Type': 'application/json',
         },
       });
+      document.querySelector('.new-review-form').reset();
       } else  {
         alert('Failed to create review');
       }
@@ -76,3 +75,4 @@ const $createBtn = document.getElementById('createBtn');
 //     }
 //   }
 // });
+
