@@ -1,5 +1,7 @@
+
 <ul class="mt-3" id="commentList">
   <h1 class="text-light text-center">Welcome back {{user.username}}!</h1>
+in
 
   {{#if user.reviews.length}}
   <h3 class="m-3 text-center"><em>Your past reviews:</em></h3>
@@ -9,7 +11,8 @@
         <h4 class='card-title'>{{review.movie.title}} <h5>{{review.rating}}</h5>
         </h4>
 
-        <p class='card-text'>{{review.comment}}</p>
+
+        <h6 class='card-text'>{{review.comment}}</h6>
       </div>
     </section>
     {{/each}}
@@ -22,6 +25,18 @@
 
 <li class="nav-item">
   <a class="nav-link active text-dark" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀👤</a>
+
+
+<div class='col-md-4'>
+  <button
+    class='btn btn-sm btn-danger'
+    id='updateBtn'
+    data-id='{{review.id}}'
+  >UPDATE</button>
+</div>
+
+
+
 </li>
 
 <section id='newreview' class='card text-center'>
@@ -36,11 +51,70 @@
       <div class='form-group mt-2'>
         <label for='review-body clas'>Tell us what you thought:</label>
         <div></div>
+
+
         <input class='form-input' id='review-body' name='review-body' />
       </div>
       <div class='form-group mt-2'>
-        <button type='submit' class='btn btn-primary' id="createBtn">Create</button>
+        <label for='review-body clas'>What would you give the movie out of 10?</label>
+        <div></div>
+        <input class='form-input' id='review-rating' name='review-rating' />
+
+      </div>
+      <div class='form-group mt-2'>
+        <button
+          type='submit'
+          class='btn btn-primary'
+          id='createBtn'
+          data-bs-toggle='modal'
+          data-bs-target='#staticBackdrop'
+        >Create</button>
       </div>
     </form>
   </div>
+
 </section>
+<!-- Modal -->
+<div
+  class='modal fade'
+  id='staticBackdrop'
+  data-bs-backdrop='static'
+  data-bs-keyboard='false'
+  tabindex='-1'
+  aria-labelledby='staticBackdropLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='staticBackdropLabel'>Great Success!</h5>
+        <button
+          type='button'
+          class='btn-close'
+          data-bs-dismiss='modal'
+          aria-label='Close'
+        ></button>
+      </div>
+      <div class='modal-body'>
+        Thanks for your review!
+      </div>
+      <div class='modal-footer'>
+        <button
+          type='button'
+          class='btn btn-secondary'
+          data-bs-dismiss='modal'
+        >Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<script
+  src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js'
+  integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p'
+  crossorigin='anonymous'
+></script>
+
+<script src='/js/profile.js'></script>
+
