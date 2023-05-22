@@ -129,32 +129,33 @@ router.get('/profile', withAuth, async (req, res) => {
 
 
 
-//user route
-router.get('/user/:userId', async (req,res) => {
-  try {
-    const userData = await User.findByPk(req.params.userId, {
-      attributes: {
-        exclude: ['password'],
-      },
-      include: { 
-        model: Review,
-        where: {
-          userId: req.params.userId,
-        } 
-      }
-    });
+// look at any user's profile page This needs to be updated
+// router.get('/user/:userId', async (req,res) => {
+//   try {
+//     const userData = await User.findByPk(req.params.userId, {
+//       attributes: {
+//         exclude: ['password'],
+//       },
+//       include: { 
+//         model: Review,
+//         where: {
+//           userId: req.params.userId,
+//         } 
+//       }
+//     });
 
-  const user = userData.get({plain: true});
-  console.log(user, 'this is you');
+//   const user = userData.get({plain: true});
+//   console.log(user, 'this is you');
 
-  res.render('userProfile', {
-    user
-  });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({error});
-  }
-});
+//   res.render('userProfile', {
+//     user
+//   });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({error});
+//   }
+// });
 
 module.exports = router;
+
 

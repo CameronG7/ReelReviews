@@ -36,6 +36,29 @@ function deleteUser(event) {
     }
 };
 
+const $createBtn = document.getElementById('createBtn');
+//create New review
+  $createBtn.addEventListener('click', async (event) => {
+    event.preventDefault();
+
+    const title = document.getElementById('review-title').value;
+    const comment = document.getElementById('review-body').value;
+    const rating = document.getElementById('review-rating').value;
+
+    if (title && comment && rating) {
+      const response = await fetch(`/api/reviews`, {
+        method: 'POST',
+        body: JSON.stringify({ title, comment, rating }),
+
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      } else  {
+        alert('Failed to create review');
+      }
+    });
+
   
 //   deleteReview.addEventListener('submit', event =>{
 
