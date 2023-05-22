@@ -30,7 +30,8 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 
 
-router.post('/',  async (req, res) => {
+
+router.post('/', withAuth, async (req, res) => {
     try {
         const movie = await Movie.findOne({where: {title: req.body.title}});
         if (!movie) {
@@ -41,6 +42,7 @@ router.post('/',  async (req, res) => {
         console.log(req.session.user.id);
 
         const reviewData = await Review.create({
+ 
             movieId: movie.id,
             comment: req.body.comment,
             userId: req.session.user.id,

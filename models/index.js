@@ -9,9 +9,9 @@ Movie.hasMany(Review, {
   foreignKey: 'movieId'
 });
 
-Movie.hasMany(Tag, {
-  foreignKey: 'id'
-});
+// Movie.hasMany(Tag, {
+//   foreignKey: 'id'
+// });
 Movie.belongsToMany(Tag, {
   through: MovieTag,
   foreignKey: 'movieId'
@@ -32,9 +32,9 @@ Review.belongsTo(User, {
   onDelete: 'CASCADE'
 });
 
-Review.hasMany(Tag, {
-  foreignKey: 'id'
-});
+// Review.hasMany(Tag, {
+//   foreignKey: 'id'
+// });
 Review.belongsToMany(Tag, {
   through: ReviewTag,
   foreignKey: 'reviewId'
