@@ -1,4 +1,3 @@
-const { doc } = require("prettier");
 
 const $loginPageBtn = document.getElementById('loginPageBtn');
 const $signupPageBtn = document.getElementById('signupPageBtn');
@@ -6,7 +5,7 @@ const $loginBtn2 = document.getElementById('loginBtn2');
 const $homeBtn = document.getElementById('homeBtn');
 const $logoutBtn = document.getElementById('logoutBtn');
 const $profileBtn = document.getElementById('profileBtn');
-const $dashboardBtn = document.getElementById('dashboardBtn');
+
 //HOMEE
 $homeBtn.addEventListener('click', async (event) => {
   goHome(event);
@@ -24,7 +23,7 @@ if (loginStatus===false ) {
 } else {
   
 $logoutBtn.addEventListener('click', (event) => { logout(event)});
-$dashboardBtn.addEventListener('click', (event) => { goDashboard(event)});
+
 $profileBtn.addEventListener('click', (event) => { profile(event)});
 }
 
