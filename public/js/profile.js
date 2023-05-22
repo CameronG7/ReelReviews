@@ -40,16 +40,14 @@ const $createBtn = document.getElementById('createBtn');
 //create New review
   $createBtn.addEventListener('click', async (event) => {
     event.preventDefault();
+    const title = document.querySelector('input[name="review-title"]').value;
+    const comment = document.querySelector('input[name="review-body"]').value;
+    const rating = document.querySelector('input[name="review-rating"]').value;
 
-    const title = document.getElementById('review-title').value;
-    const comment = document.getElementById('review-body').value;
-    const rating = document.getElementById('review-rating').value;
-
-    if (title && comment && rating) {
+    if (title && body) {
       const response = await fetch(`/api/reviews`, {
         method: 'POST',
-        body: JSON.stringify({ title, comment, rating }),
-
+        body: JSON.stringify({ title, comment }),
         headers: {
           'Content-Type': 'application/json',
         },
