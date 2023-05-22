@@ -37,8 +37,7 @@ router.post('/', withAuth, async (req, res) => {
         const movie = await Movie.findOne({where: {title: title}});
         if (!movie) {
             console.log('movie not found');
-            newMovie = await Movie.create({title: req.body.title});
-            
+            newMovie = await Movie.create({title: title});
         }
         const movieId = movie ? movie.id : newMovie.id;
         console.log(req.session.user.id);
