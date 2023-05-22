@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Review, Movie } = require('../../models');
 const withAuth = require('../../utils/auth');
+const _ = require('lodash');
 
 router.get('/', async (req, res) => {
   res.redirect('/home');
@@ -63,7 +64,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const users = userData.flatMap((user) => user.get({ plain: true }));
     const reviews = users.flatMap((user) => user.reviews);
     const movies = reviews.map((review) => review.movie);
-
+    _.forEach(movies, (movie) => {movie.title = _.startCase(movie.title)});
+    
     console.log(users);
     console.log(reviews);
     console.log(movies);
@@ -106,6 +108,7 @@ router.get('/profile', withAuth, async (req, res) => {
     const user = userData.get({ plain: true });
     const reviews = user.reviews;
     const movies = reviews.map((review) => review.movie);
+    _.forEach(movies, (movie) => {movie.title = _.startCase(movie.title)});
 
     console.log(user);
     console.log(reviews);
