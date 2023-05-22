@@ -19,10 +19,10 @@
   6. [Questions](#questions)
 
   ## Installation
-  The application was built through Node.js, and utilizes bcrypt, dotenv, express, express-handlebars, express-session, handlebars, lodash, mysql2 and sequelize dependencies. In addition to these, the program also utilizes the devDependencies eslint, eslint-config-airbnb, eslint-config-airbnb-base, eslint-config-prettier, eslint-plugin-import, eslint-plugin-prettier, nodemon and prettier. All of the aforementioned dependencies need to be downloaded before the program is run. This can easily be done by first initiating the Node.js application by running "npm init -y", followed by running "npm i" in the command line. 
+  The application was built through Node.js, and utilizes bcrypt, dotenv, express, express-handlebars, express-session, handlebars, lodash, mysql2 and sequelize dependencies. In addition to these, the program also utilizes the devDependencies eslint, eslint-config-airbnb, eslint-config-airbnb-base, eslint-config-prettier, eslint-plugin-import, eslint-plugin-prettier, nodemon and prettier. All of the aforementioned dependencies need to be downloaded before the program is run. This can easily be done by first initiating the Node.js application by running ```npm init -y```, followed by running ```npm i``` in the command line. 
 
   ## Usage
-  The first step is to create the database. Log in to to mysql and run the schema.sql file to create the database. Thereafter, run node seeds/index.js in the command line to seed the database with some information. The server can now be started by running "nodemon server" in the command line. Once the server has started the application can be opened at http://localhost:3001/home. 
+  The first step is to create the database. Log in to to mysql and run the schema.sql file to create the database. Thereafter, run ```node seeds/index.js``` in the command line to seed the database with some information. The server can now be started by running ```nodemon server``` in the command line. Once the server has started the application can be opened in a browser at http://localhost:3001/home. 
 
   ## License
   This project has a MIT License license. For details about its restrictions and rules, please follow the link below:  
