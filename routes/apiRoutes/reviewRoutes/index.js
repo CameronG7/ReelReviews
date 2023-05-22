@@ -30,20 +30,19 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 
 
-
 router.post('/', withAuth, async (req, res) => {
     try {
         const movie = await Movie.findOne({where: {title: req.body.title}});
         if (!movie) {
             console.log('movie not found');
-        
+            newMovie = await Movie.create({title: req.body.title});
+            
         }
-
+        const movieId = movie ? movie.id : newMovie.id;
         console.log(req.session.user.id);
 
         const reviewData = await Review.create({
- 
-            movieId: movie.id,
+            movieId: movieId,
             comment: req.body.comment,
             userId: req.session.user.id,
             rating: req.body.rating,
