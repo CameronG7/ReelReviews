@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Review, Movie } = require('../../../models');
 const sequelize = require('../../../config/connection');
 const withAuth = require('../../../utils/auth');
+const _ = require('lodash');
 
 
 router.get('/', async (req, res) => {
@@ -32,10 +33,11 @@ router.delete('/:id', withAuth, async (req, res) => {
 
 router.post('/', withAuth, async (req, res) => {
     try {
-        const movie = await Movie.findOne({where: {title: req.body.title}});
+        const title = _.camelCase(req.body.title);
+        const movie = await Movie.findOne({where: {title: title}});
         if (!movie) {
             console.log('movie not found');
-            newMovie = await Movie.create({title: req.body.title});
+            newMovie = await Movie.create({title: title});
             
         }
         const movieId = movie ? movie.id : newMovie.id;

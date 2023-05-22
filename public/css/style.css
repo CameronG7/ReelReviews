@@ -1,10 +1,12 @@
 .navbar {
+    font-family: 'IM Fell DW Pica SC', serif;
     background:url(https://patternuniverse.com/files/images/film-reel-pattern.gif);
     background-size: cover;
 }
 
 
 body {
+    font-family: 'IM Fell DW Pica SC', serif;
     background: url(https://qph.cf2.quoracdn.net/main-qimg-95c1a3b81364683d389bb4eab7f3cc95);
     background-size: cover;
     background-color: azure;
@@ -26,16 +28,14 @@ h3 {
 }
 
 #loginPageBtn{ 
-    background-color: white;
-    border-color: grey;
+   
     margin-left: 10px;
     margin-right: 10px;
   
 
 }
 #signupPageBtn{ 
-    background-color: white;
-    border-color: grey;
+    
     margin-left: 10px;
     margin-right: 10px;
 
@@ -50,6 +50,11 @@ h3 {
     margin-top: auto;
     margin-bottom: auto;
 }
+
+#getStartedBtn {
+   margin-top: 20px;
+}
+
 
 .card {
     width: 36rem;
@@ -166,6 +171,13 @@ h3 {
       font-size: 50px;
     font-weight: 500;
      
+}
+
+footer {
+    position: fixed;
+    font-family: 'IM Fell DW Pica SC', serif;
+    background-color: #000000;
+    color: white;
 }
 
 @keyframes textclip {
