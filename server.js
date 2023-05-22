@@ -14,10 +14,13 @@ const app = express();
 
 const PORT = process.env.PORT || 3001;
 
+
 // setup express to use handlebars as our template engine
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
+
+
 
 const sessionConfig = {
   secret: 'Super secret secret', // normally this would be an environment variable
