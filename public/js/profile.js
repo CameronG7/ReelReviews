@@ -57,9 +57,8 @@ const $deleteReview = document.getElementById('deleteBtn');
 $deleteReview.addEventListener('click', event =>{
 
   const delButtonHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
+    event.preventDefault();
       const id = event.target.getAttribute('data-id');
-  
       const response = await fetch(`/api/reviews/${id}`, {
         method: 'DELETE',
       });
@@ -70,32 +69,33 @@ $deleteReview.addEventListener('click', event =>{
         alert('Failed to delete review');
       }
     }
-  }
-});
+  }); 
+
+  
+
 
 const $updateBtn = document.getElementById('updateBtn');
 
 $updateBtn.addEventListener('click', async (event) => {
     event.preventDefault();
 
-    const title = document.getElementById('review-title').value;
-    const comment = document.getElementById('review-body').value;
-    const rating = document.getElementById('review-rating').value;
+    const title = document.querySelector('.card-title').textContent;
+    const comment = document.querySelector('.card-text').textContent;
+    const rating = document.querySelector('.card-rating').textContent;
     console.log(title, comment, rating);
     const id = window.location.toString().split('/')[window.location.toString().split('/').length - 1];
 
     if (title && comment && rating) {
 
-        const response = await fetch(`/api/reviews/${id}`, {
+        const response = await fetch(`/api/reviews`, {
             method: 'PUT',
             body: JSON.stringify({ title, comment, rating }),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-        document.querySelector('#newreview').reset();
-    }
-    else {
+        document.querySelector('.new-review-form').reset();
+       } else {
         alert('Failed to update review');
     }
 });

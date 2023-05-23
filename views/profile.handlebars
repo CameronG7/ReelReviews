@@ -1,35 +1,32 @@
 
 <ul class="mt-3" id="commentList">
-  <h1 class="text-light text-center">Welcome back {{user.username}}!</h1>
+<h1 class="text-light text-center">Welcome back {{user.username}}!</h1>
 
 
-  {{#if user.reviews.length}}
-  <h3 class="m-3 text-center"><em>Your past reviews:</em></h3>
-    {{#each user.reviews as |review|}}
-    <section class='card mt-2 col-3'>
-      <div class='card-body p-3'>
-        <h4 class='card-title'>{{review.movie.title}} <h5>{{review.rating}}</h5>
-        </h4>
+{{#if user.reviews.length}}
+<h3 class="m-3 text-center"><em>Your past reviews:</em></h3>
+  {{#each user.reviews as |review|}}
+  <section class='card mt-2 col-3'>
+    <div class='card-body p-3'>
+      <h4 class='card-title'>{{review.movie.title}} 
+      </h4>
+      <h5 class='card-rating'>{{review.rating}}</h5>
+      <h6 class='card-text'>{{review.comment}}</h6>
 
-
-
-        <h6 class='card-text'>{{review.comment}}</h6>
-        <div class='col-md-4'>
-  <button
-    class='btn btn-sm btn-danger' type="submit"
-    id='updateBtn'
-    data-id='{{review.id}}'
-  >UPDATE</button>
-</div>
+<button
+  class='btn btn-sm btn-danger' type="click"
+  id='updateBtn'
+  data-id='{{review.id}}'
+>UPDATE</button>
 <br>
-<div class='col-md-4'>
-  <button
-    class='btn btn-sm btn-danger' type="submit"
-    id='deleteBtn'
-    data-id='{{review.id}}'
-  >Delete Review</button>
+
+<button
+  class='btn btn-sm btn-danger' type="click"
+  id='deleteBtn'
+  data-id='{{review.id}}'
+>Delete Review</button>
 </div>
-      </div>
+    </div>
     </section>
     {{/each}}
 
@@ -41,7 +38,7 @@
 </ul>
 
 <li class="nav-item">
-  <a class="nav-link active text-dark" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀👤</a>
+  <a class="nav-link active text-light" aria-current="page" id="deleteUserBtn" href="/deleteUser">💀Delete User(Don't do it)👤</a>
 
 
 
