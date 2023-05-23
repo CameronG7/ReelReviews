@@ -132,13 +132,13 @@ router.get('/profile', withAuth, async (req, res) => {
       ]
     })
     const user = userData.get({ plain: true });
-    const reviews = user.reviews;
+    const reviews = _.reverse(user.reviews);
     const movies = reviews.map((review) => review.movie);
     _.forEach(movies, (movie) => {movie.title = _.startCase(movie.title)});
 
-    console.log(user);
+    // console.log(user);
     console.log(reviews);
-    console.log(movies);
+    // console.log(movies);
     res.render('profile', {
       username,
       user,
