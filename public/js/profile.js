@@ -4,10 +4,10 @@ console.log('profile.js loaded');
 
 const $deleteUserBtn = document.getElementById('deleteUserBtn');
 
-$deleteUserBtn.addEventListener('click', async (event) => {
-    deleteUser(event);
-    }
-    );
+// $deleteUserBtn.addEventListener('click', async (event) => {
+//     deleteUser(event);
+//     }
+//     );
 
 async function deleteUser(event) {
     event.preventDefault();

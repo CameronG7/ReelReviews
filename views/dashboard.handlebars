@@ -4,17 +4,17 @@
   </div>
 </div>
 
-{{#each users as |user|}}
-  {{#each user.reviews as |review|}}
+{{#each reviewList as |review|}}
+  {{!-- {{#each user.reviews as |review|}} --}}
     <section class='card mt-2'>
       <div class='card-body p-3'>
-        <h4 class='card-title'>{{review.movie.title}} <h5>{{review.rating}}</h5></h4>
+        <h4 class='card-title'>{{review.movieTitle}} <h5>{{review.rating}}</h5></h4>
 
         <h6 class='card-text'>{{review.comment}}<h6>
-        <a href='/review/{{review.id}}' class='btn btn-primary'>View review</a>
+        <p>Posted By: {{review.username}}</p>
       </div>
     </section>
-  {{/each}}
+  {{!-- {{/each}} --}}
 {{/each}}
 
 
