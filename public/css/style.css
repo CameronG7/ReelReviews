@@ -27,6 +27,12 @@ h3 {
     border-color: white;
 }
 
+.btn-danger{
+    background-color: red;
+    border-color: white;
+    font-size: small;
+}
+
 #loginPageBtn{ 
    
     margin-left: 10px;

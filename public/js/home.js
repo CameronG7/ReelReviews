@@ -5,5 +5,5 @@ $getStartedBtn.addEventListener('click', async (event) => {
   location.href = `/signup`;
 });
 
-const $footerElement = document.querySelector('footer');
-$footerElement.classList.add('fixed-bottom');
+// const $footerElement = document.querySelector('footer');
+// $footerElement.classList.add('fixed-bottom');

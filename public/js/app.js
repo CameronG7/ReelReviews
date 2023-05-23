@@ -20,6 +20,7 @@ if (loginStatus===false ) {
   $signupPageBtn.addEventListener('click', async (event) => {
     loadSignup(event);
   });
+
 } else { $logoutBtn.addEventListener('click', async (event) => {
     logout(event);
   });
