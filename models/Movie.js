@@ -9,15 +9,15 @@ Movie.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
+      autoIncrement: true
     },
     title: {
       type: DataTypes.STRING(75),
       allowNull: false,
-      validate:{
-        isAlphanumeric: true,
-      },
-    },
+      validate: {
+        isAlphanumeric: true
+      }
+    }
     // tagId: {
     //   type: DataTypes.INTEGER,
     //   references: {
@@ -35,12 +35,13 @@ Movie.init(
     //   }
     // },
   },
-    {
-      sequelize,
-      timestamps: false,
-      freezeTableName: true,
-      
-      modelName: 'movie',
-    });
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
 
-    module.exports = Movie;
+    modelName: 'movie'
+  }
+);
+
+module.exports = Movie;
