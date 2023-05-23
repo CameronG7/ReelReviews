@@ -41,37 +41,63 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const {
       loggedIn,
       user: { username }
-    } = req.session;
+    } = req.session; // pull from req.session
 
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['username', 'ASC']],
-      include: [
-        {
-          model: Review,
-          attributes: ['id', 'rating', 'comment', 'movieId'],
-          include: [
-            {
-               model: Movie, 
+    // Old query to grab the users and their reviews and movies. easier to sort data if done the way below
+    // const userData = await User.findAll({ 
+    //   attributes: { exclude: ['password'] },
+    //   order: [['username', 'ASC']],
+    //   include: [
+    //     {
+    //       model: Review,
+    //       attributes: ['id', 'rating', 'comment', 'movieId'],
+    //       include: [
+    //         {
+    //            model: Movie, 
                
-               attributes: ['id', 'title'] 
-            }
-            ]
-        }
+    //            attributes: ['id', 'title'] 
+    //         }
+    //         ]
+    //     }
+    //   ]
+    // });
+
+    // const users = userData.flatMap((user) => user.get({ plain: true }));
+    // const reviews = users.flatMap((user) => user.reviews);
+    // const movies = reviews.map((review) => review.movie);
+    // _.forEach(movies, (movie) => {movie.title = _.startCase(movie.title)}); //lodash to capitalize the first letter of each word in the movie title, this is a gamechanger
+
+    const reviewData = await Review.findAll({ //pull all reviews and include the user and movie data
+      attributes: ['id', 'rating', 'comment', 'movieId', 'userId',],
+      order: [['id', 'DESC']],
+      include: [
+        { model: User, attributes: ['username'] },
+        { model: Movie, attributes: ['title'] }
       ]
     });
-
-    const users = userData.flatMap((user) => user.get({ plain: true }));
-    const reviews = users.flatMap((user) => user.reviews);
-    const movies = reviews.map((review) => review.movie);
-    _.forEach(movies, (movie) => {movie.title = _.startCase(movie.title)});
+    reviewsRedo = reviewData.flatMap((review) => {  //make data pretty and set reviews that don't have a user to null
+      const reviewObj = review.get({ plain: true });
+      if (reviewObj.userId) {
+        reviewObj.username = reviewObj.user.username;
+        reviewObj.movieTitle = _.startCase(reviewObj.movie.title);
+       return reviewObj; 
+      }
+      else {
+        return null;
+      }
+      
+    });
+    const reviewList = _.filter(reviewsRedo, (review) => review !== null); // filter out the null reviews, these reviews were pushed in haphazardly and are missing keys data points
+  
+    console.log(' review pull',reviewList);
     
-    console.log(users);
-    console.log(reviews);
-    console.log(movies);
+    // console.log(users);
+    // console.log(reviews);
+    // console.log(movies);
     res.render('dashboard', {
       username,
-      users,
+      // users,
+      reviewList,
       loggedIn
     });
   } catch (error) {
